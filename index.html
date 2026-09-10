@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect Senac - Central de Ajuda & Tutoriais em Vídeo</title>
+  <link rel="icon" type="image/png" href="assets/logo.png?v=3" />
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            senac: {
+              navy: '#00498B',
+              navyDark: '#00386C',
+              navyLight: '#0A58A2',
+              navyBorder: '#1A6BB8',
+              blue: '#00498B',
+              blueHover: '#003B75',
+              blueBright: '#005EB8',
+              blueLight: '#E8F2FC',
+              orange: '#F37021',
+              orangeHover: '#D95D13',
+              orangeLight: '#FFF1E8',
+              yellow: '#FFB800',
+              yellowLight: '#FFF8E6',
+              bgLight: '#F4F7FB',
+              cardBg: '#FFFFFF',
+              textDark: '#0F172A',
+              textMuted: '#64748B',
+              borderLight: '#E2E8F0',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif'],
+          },
+          boxShadow: {
+            'subtle': '0 4px 20px -2px rgba(8, 24, 43, 0.05), 0 2px 6px -1px rgba(8, 24, 43, 0.03)',
+            'card': '0 10px 30px -4px rgba(8, 24, 43, 0.08), 0 4px 10px -2px rgba(8, 24, 43, 0.04)',
+            'glow-orange': '0 0 20px -3px rgba(243, 112, 33, 0.4)',
+            'glow-blue': '0 0 25px -3px rgba(0, 78, 154, 0.35)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F1F5F9;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+
+    /* Range slider custom styling */
+    input[type="range"] {
+      accent-color: #F37021;
+    }
+
+    /* Video wrapper for responsive 16:9 iframe */
+    .video-responsive-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      background-color: #08182B;
+    }
+    .video-responsive-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
+</head>
+<body class="bg-senac-bgLight text-senac-textDark font-sans antialiased min-h-screen flex flex-col selection:bg-senac-orange selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- 1. HEADER / NAVEGAÇÃO SUPERIOR OFICIAL CONNECT SENAC -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 bg-[#00498B] text-white shadow-md border-b border-[#00386C]/40 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-18 py-3 gap-3">
+        
+        <!-- Logo & Marca Oficial -->
+        <div class="flex items-center gap-3 shrink-0">
+          <a href="#" class="flex items-center gap-2.5 group focus:outline-none focus:ring-2 focus:ring-senac-orange rounded-xl p-1">
+            <!-- Imagem Logo Connect Senac Transparente (Sem Fundo Branco) -->
+            <div class="flex items-center gap-2.5 group-hover:scale-105 transition-transform">
+              <img src="assets/logo-icon.png?v=4" alt="Connect Senac Icon" class="h-8 sm:h-9 w-auto object-contain drop-shadow-sm">
+              <span class="font-bold text-lg sm:text-xl tracking-tight text-white flex items-center">
+                Connect<span class="ml-1 text-white">Senac</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Links de Navegação Oficiais -->
+        <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-white/90">
+          <a href="#modulos-rapidos" class="flex items-center gap-1.5 hover:text-senac-yellow transition-colors">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-senac-yellow"></i>
+            <span>Cursos & Vagas</span>
+          </a>
+          <a href="#faqAccordion" class="flex items-center gap-1.5 hover:text-senac-yellow transition-colors">
+            <i data-lucide="info" class="w-3.5 h-3.5 text-blue-200"></i>
+            <span>Como Funciona</span>
+          </a>
+        </nav>
+
+        <!-- Barra de Busca Global -->
+        <div class="flex-1 max-w-lg mx-2 hidden sm:block">
+          <div class="relative group">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-blue-200 group-focus-within:text-white transition-colors">
+              <i data-lucide="search" class="w-4 h-4"></i>
+            </div>
+            <input 
+              type="text" 
+              id="globalSearchInput" 
+              placeholder="Buscar tutoriais... (Ex: agendamento, pautas)" 
+              class="w-full pl-9 pr-8 py-2 bg-[#00386C]/70 border border-[#1A6BB8]/60 rounded-xl text-xs text-white placeholder-blue-200/70 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/20 transition-all shadow-inner"
+              oninput="handleSearch(this.value)"
+            >
+            <button 
+              id="clearSearchBtn" 
+              onclick="clearSearch()" 
+              class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-blue-200 hover:text-white transition-colors"
+              title="Limpar busca"
+            >
+              <i data-lucide="x" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Ações / Progresso Geral & Botão Hambúrguer Mobile -->
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+          <!-- Badge de Progresso Geral -->
+          <div class="flex items-center gap-1.5 sm:gap-2 bg-[#00386C]/80 border border-[#1A6BB8]/40 px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs text-blue-100 shadow-inner">
+            <i data-lucide="award" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-senac-yellow"></i>
+            <span id="headerProgressText" class="font-bold text-white text-[11px] sm:text-xs">0 / 10</span>
+          </div>
+
+          <!-- Botão Menu Hambúrguer (Mobile) -->
+          <button 
+            id="mobileMenuBtn" 
+            onclick="toggleMobileMenu()" 
+            class="md:hidden p-2 rounded-xl bg-[#00386C] text-white hover:bg-[#0A58A2] border border-[#1A6BB8]/50 transition-all focus:outline-none focus:ring-2 focus:ring-senac-orange"
+            aria-label="Abrir Menu de Navegação"
+          >
+            <i id="mobileMenuIcon" data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Menu Hambúrguer Dropdown (Mobile) -->
+      <div id="mobileMenuDropdown" class="hidden md:hidden py-3 border-t border-[#00386C] space-y-2 animate-in fade-in slide-in-from-top-2 duration-200">
+        <div class="grid grid-cols-1 gap-1 text-xs font-semibold text-white">
+          <a 
+            href="#modulos-rapidos" 
+            onclick="toggleMobileMenu()" 
+            class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-[#00386C] transition-colors"
+          >
+            <i data-lucide="sparkles" class="w-4 h-4 text-senac-yellow"></i>
+            <span>Cursos & Vagas</span>
+          </a>
+
+          <a 
+            href="#faqAccordion" 
+            onclick="toggleMobileMenu()" 
+            class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-[#00386C] transition-colors"
+          >
+            <i data-lucide="info" class="w-4 h-4 text-blue-200"></i>
+            <span>Como Funciona</span>
+          </a>
+
+          <!-- Item Avaliações 5.0 ⭐ no Hambúrguer Mobile -->
+          <a 
+            href="#video-1" 
+            onclick="selectVideoById('video-4'); toggleMobileMenu();" 
+            class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-[#00386C] transition-colors"
+          >
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="message-square" class="w-4 h-4 text-blue-200"></i>
+              <span>Avaliações</span>
+            </div>
+            <span class="bg-[#00386C] text-senac-yellow px-2 py-0.5 rounded text-[10px] font-bold border border-senac-yellow/30">
+              5.0 ⭐
+            </span>
+          </a>
+
+          <!-- Item Localização no Hambúrguer Mobile -->
+          <a 
+            href="#" 
+            onclick="showToast('Unidade Senac Bahia / São Paulo'); toggleMobileMenu(); return false;" 
+            class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-[#00386C] transition-colors"
+          >
+            <i data-lucide="map-pin" class="w-4 h-4 text-blue-200"></i>
+            <span>Localização</span>
+          </a>
+
+          <!-- Portal Senac Oficial no Mobile -->
+          <a 
+            href="https://www.ba.senac.br/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-[#00386C] text-senac-yellow transition-colors"
+          >
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="globe" class="w-4 h-4"></i>
+              <span>Portal Senac Bahia</span>
+            </div>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Barra de Busca Mobile -->
+      <div class="py-2.5 pb-4 md:hidden">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-blue-200">
+            <i data-lucide="search" class="w-4 h-4"></i>
+          </div>
+          <input 
+            type="text" 
+            id="mobileSearchInput" 
+            placeholder="Pesquisar tutoriais em vídeo..." 
+            class="w-full pl-9 pr-8 py-2 bg-[#00386C]/70 border border-[#1A6BB8]/60 rounded-xl text-xs text-white placeholder-blue-200/70 focus:outline-none focus:border-white"
+            oninput="handleSearch(this.value)"
+          >
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner Informativo Superior -->
+  <div class="bg-gradient-to-r from-senac-blue to-senac-blueBright text-white text-xs py-2 px-4 shadow-inner">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap">
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-senac-yellow text-slate-900 uppercase tracking-wider">
+          Vídeos Oficiais
+        </span>
+        <span class="font-medium text-slate-100">
+          Playlist completa com <strong>10 tutoriais práticos em vídeo</strong> gravados no ambiente real do <strong>Connect Senac</strong>.
+        </span>
+      </div>
+      <a href="#modulos-rapidos" class="hidden sm:inline-flex items-center gap-1 font-semibold text-white hover:underline underline-offset-2 shrink-0">
+        Ver tópicos rápidos <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN CONTAINER -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+
+    <!-- Mensagem de Filtro Ativo / Resultado de Busca (Dinâmico) -->
+    <div id="searchNotification" class="hidden mb-6 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 flex items-center justify-between shadow-sm">
+      <div class="flex items-center gap-3">
+        <i data-lucide="filter" class="w-5 h-5 text-amber-600"></i>
+        <div>
+          <p class="text-sm font-semibold" id="searchResultText">Filtrando por: "..."</p>
+          <p class="text-xs text-amber-700" id="searchResultCount">Exibindo vídeos correspondentes</p>
+        </div>
+      </div>
+      <button onclick="clearSearch()" class="px-3 py-1.5 text-xs font-semibold bg-white border border-amber-300 rounded-lg hover:bg-amber-100 text-amber-800 transition-colors">
+        Limpar Filtro
+      </button>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- 2. HERO & PLAYER PRINCIPAL (LAYOUT PLAYLIST / DASHBOARD) -->
+    <!-- ========================================================================= -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+      
+      <!-- LADO ESQUERDO (7 Colunas em Desktop - ~60-65%): Player Real YouTube e Detalhes -->
+      <div class="lg:col-span-7 xl:col-span-8 flex flex-col gap-5">
+        
+        <!-- CARD DO PLAYER DE VÍDEO YOUTUBE OFICIAL -->
+        <div class="bg-senac-cardBg rounded-2xl border border-senac-borderLight shadow-card overflow-hidden transition-all">
+          
+          <!-- Contêiner do Player Responsivo 16:9 Real -->
+          <div class="video-responsive-wrapper rounded-t-2xl shadow-inner" id="videoContainer">
+            <iframe 
+              id="mainYouTubeIframe"
+              src="https://www.youtube.com/embed/O8DCMh8yrNs?si=vf3QSK2HfN1FNRTJ&enablejsapi=1&rel=0" 
+              title="YouTube video player" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              referrerpolicy="strict-origin-when-cross-origin" 
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <!-- Metadados & Ações do Vídeo em Reprodução -->
+          <div class="p-5 sm:p-6 bg-white">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+              <div class="space-y-1.5">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span id="activeVideoCategoryBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-senac-blueLight text-senac-blue border border-senac-blue/20">
+                    <i data-lucide="folder" class="w-3.5 h-3.5"></i>
+                    <span>Geral</span>
+                  </span>
+                  <span class="inline-flex items-center gap-1 text-xs text-slate-500 font-medium">
+                    <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                    <span id="activeVideoDuration">01:45 min</span>
+                  </span>
+                  <span id="activeVideoLevelBadge" class="inline-flex items-center gap-1 text-xs text-slate-500">
+                    • Nível: <strong class="text-slate-700 font-semibold" id="activeVideoLevelText">Iniciante</strong>
+                  </span>
+                </div>
+                
+                <h1 id="activeVideoTitle" class="text-xl sm:text-2xl font-extrabold text-senac-textDark tracking-tight leading-snug">
+                  Tela Inicial e Visão Geral da Plataforma
+                </h1>
+              </div>
+
+              <!-- Ações Rápidas: Botão Marcar como Assistido & Compartilhar -->
+              <div class="flex items-center gap-2.5 shrink-0">
+                <button 
+                  id="markWatchedBtn" 
+                  onclick="toggleActiveVideoWatched()" 
+                  class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all shadow-sm border focus:outline-none focus:ring-2 bg-white text-slate-700 border-slate-300 hover:bg-slate-50"
+                >
+                  <i id="markWatchedIcon" data-lucide="circle" class="w-4 h-4 text-slate-400"></i>
+                  <span id="markWatchedText">Marcar como Assistido</span>
+                </button>
+
+                <button 
+                  onclick="copyVideoLink()" 
+                  class="p-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-senac-blue transition-colors focus:outline-none focus:ring-2 focus:ring-senac-blue/20" 
+                  title="Copiar Link deste Tutorial"
+                >
+                  <i data-lucide="share-2" class="w-4 h-4"></i>
+                </button>
+
+                <button 
+                  onclick="openInYouTube()" 
+                  class="p-2.5 rounded-xl border border-red-200 text-red-600 hover:bg-red-50 transition-colors focus:outline-none focus:ring-2 focus:ring-red-300" 
+                  title="Abrir diretamente no YouTube"
+                >
+                  <i data-lucide="youtube" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <p id="activeVideoDescription" class="mt-3 text-sm text-slate-600 leading-relaxed">
+              Conheça a interface inicial do Connect Senac, os menus de acesso rápido, notificações e como navegar entre os diferentes módulos do sistema.
+            </p>
+
+          </div>
+
+          <!-- ========================================================================= -->
+          <!-- CAIXA EXPANSÍVEL: CHECKLIST PASSO A PASSO & LINKS RÁPIDOS -->
+          <!-- ========================================================================= -->
+          <div class="bg-slate-50/80 border-t border-slate-200/80 p-5 sm:p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-senac-blueLight text-senac-blue flex items-center justify-center shadow-xs">
+                  <i data-lucide="list-checks" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-sm text-senac-textDark">Roteiro Prático do Tutorial</h3>
+                  <p class="text-xs text-slate-500">Siga as etapas demonstradas no vídeo</p>
+                </div>
+              </div>
+              <span class="text-xs font-semibold text-senac-blue bg-white border border-senac-borderLight px-2.5 py-1 rounded-lg">
+                <span id="checklistProgress">0/4 passos concluídos</span>
+              </span>
+            </div>
+
+            <!-- Lista Interativa de Passos -->
+            <div id="stepChecklistContainer" class="space-y-2.5 mb-5">
+              <!-- Renderizado dinamicamente pelo JavaScript com base no vídeo ativo -->
+            </div>
+
+            <!-- Links Rápidos para a Tela do Sistema -->
+            <div class="pt-4 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="flex items-center gap-2 text-xs text-slate-600">
+                <i data-lucide="external-link" class="w-4 h-4 text-senac-orange"></i>
+                <span>Acessar funcionalidade no Connect Senac:</span>
+              </div>
+              <div id="quickLinksContainer" class="flex flex-wrap items-center gap-2">
+                <!-- Inserido dinamicamente -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- LADO DIREITO (5 Colunas em Desktop - ~35-40%): PLAYLIST DOS 10 VÍDEOS -->
+      <!-- ========================================================================= -->
+      <div class="lg:col-span-5 xl:col-span-4 flex flex-col gap-4">
+        
+        <div class="bg-senac-cardBg rounded-2xl border border-senac-borderLight shadow-card overflow-hidden flex flex-col h-full">
+          
+          <!-- Cabeçalho da Playlist com Filtros -->
+          <div class="p-4 sm:p-5 border-b border-senac-borderLight bg-gradient-to-b from-white to-slate-50/60">
+            
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-senac-navy text-senac-yellow flex items-center justify-center">
+                  <i data-lucide="play-square" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <h2 class="font-bold text-base text-senac-textDark">Playlist de Tutoriais</h2>
+                  <p class="text-xs text-slate-500" id="playlistStatsText">10 vídeos oficiais • Prática real</p>
+                </div>
+              </div>
+
+              <!-- Indicador de Vídeo Atual / Total -->
+              <span id="currentVideoIndexBadge" class="text-xs font-mono font-bold px-2.5 py-1 bg-senac-blue text-white rounded-lg">
+                1 / 10
+              </span>
+            </div>
+
+            <!-- Barra de Progresso da Playlist -->
+            <div class="mb-4">
+              <div class="flex justify-between text-xs font-semibold text-slate-500 mb-1">
+                <span>Progresso dos Vídeos</span>
+                <span id="overallPlaylistPercent" class="text-senac-orange font-bold">0% concluído</span>
+              </div>
+              <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                <div id="overallProgressBar" class="h-full bg-gradient-to-r from-senac-blue to-senac-orange w-0 transition-all duration-500"></div>
+              </div>
+            </div>
+
+            <!-- Abas e Filtros de Categorias / Módulos -->
+            <div class="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar text-xs font-medium" id="categoryFilterContainer">
+              <button 
+                onclick="setCategoryFilter('all')" 
+                class="category-btn active shrink-0 px-3 py-1.5 rounded-xl transition-all border font-semibold bg-senac-navy text-white border-senac-navy shadow-sm"
+                data-category="all"
+              >
+                Todos (10)
+              </button>
+              <button 
+                onclick="setCategoryFilter('Agendamentos')" 
+                class="category-btn shrink-0 px-3 py-1.5 rounded-xl transition-all border font-semibold bg-white text-slate-600 border-slate-200 hover:border-senac-blue hover:text-senac-blue"
+                data-category="Agendamentos"
+              >
+                Agendamentos
+              </button>
+              <button 
+                onclick="setCategoryFilter('Coordenação')" 
+                class="category-btn shrink-0 px-3 py-1.5 rounded-xl transition-all border font-semibold bg-white text-slate-600 border-slate-200 hover:border-senac-blue hover:text-senac-blue"
+                data-category="Coordenação"
+              >
+                Coordenação
+              </button>
+              <button 
+                onclick="setCategoryFilter('Backoffice / ADM')" 
+                class="category-btn shrink-0 px-3 py-1.5 rounded-xl transition-all border font-semibold bg-white text-slate-600 border-slate-200 hover:border-senac-blue hover:text-senac-blue"
+                data-category="Backoffice / ADM"
+              >
+                Backoffice / ADM
+              </button>
+              <button 
+                onclick="setCategoryFilter('Instrutor')" 
+                class="category-btn shrink-0 px-3 py-1.5 rounded-xl transition-all border font-semibold bg-white text-slate-600 border-slate-200 hover:border-senac-blue hover:text-senac-blue"
+                data-category="Instrutor"
+              >
+                Instrutor
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Lista de Vídeos com Scroll Inteligente -->
+          <div class="divide-y divide-slate-100 overflow-y-auto max-h-[620px] p-2 space-y-1.5" id="videoPlaylistList">
+            <!-- Renderizado dinamicamente pelo JavaScript -->
+          </div>
+
+          <!-- Rodapé do Card da Playlist -->
+          <div class="p-3 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+            <span class="flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-senac-yellow"></i>
+              Vídeos do Connect Senac
+            </span>
+            <button onclick="resetAllProgress()" class="text-slate-400 hover:text-red-600 transition-colors font-medium text-[11px] underline">
+              Reiniciar progresso
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- 3. GRADE DE MÓDULOS & DOCUMENTAÇÃO RÁPIDA (ABAIXO DO PLAYER) -->
+    <!-- ========================================================================= -->
+    <section id="modulos-rapidos" class="mt-12 sm:mt-16 pt-8 border-t border-slate-200">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <div class="flex items-center gap-2 text-senac-blue font-bold text-xs uppercase tracking-wider mb-1.5">
+            <i data-lucide="book-open" class="w-4 h-4 text-senac-orange"></i>
+            Acesso Direto aos Tutoriais Chave
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-senac-textDark tracking-tight">
+            Tópicos Principais por Perfil de Usuário
+          </h2>
+          <p class="text-slate-600 text-sm mt-1 max-w-2xl">
+            Clique para carregar imediatamente o vídeo correspondente no player principal.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="text-xs text-slate-500">Plataforma:</span>
+          <span class="bg-senac-blueLight text-senac-blue font-bold text-xs px-3 py-1 rounded-lg">
+            Connect Senac 2026
+          </span>
+        </div>
+      </div>
+
+      <!-- Grid de 4 Cards de Acesso Rápido -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Card 1: Cadastro e Agendamento -->
+        <div class="bg-white rounded-2xl border border-senac-borderLight p-5 shadow-subtle hover:shadow-card hover:-translate-y-1 transition-all group flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-senac-blue flex items-center justify-center mb-4 group-hover:bg-senac-blue group-hover:text-white transition-colors">
+              <i data-lucide="calendar-plus" class="w-6 h-6"></i>
+            </div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-senac-blue bg-senac-blueLight px-2 py-0.5 rounded-full">
+                Agendamentos
+              </span>
+              <span class="text-[11px] text-slate-400">Vídeo #2</span>
+            </div>
+            <h3 class="font-bold text-base text-senac-textDark group-hover:text-senac-blue transition-colors mb-2">
+              Cadastro e Agendamento
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+              Passo a passo ensinando a criar seu cadastro e agendar salas, laboratórios e recursos na unidade.
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+            <button onclick="selectVideoById('video-2')" class="text-xs font-bold text-senac-orange group-hover:text-senac-orangeHover flex items-center gap-1">
+              Assistir Vídeo <i data-lucide="play" class="w-3 h-3 fill-current"></i>
+            </button>
+            <button onclick="openDocModal('agendamento-pratico')" class="text-xs font-semibold text-slate-500 hover:text-senac-blue">
+              Ler Guia
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 2: Tela do Instrutor -->
+        <div class="bg-white rounded-2xl border border-senac-borderLight p-5 shadow-subtle hover:shadow-card hover:-translate-y-1 transition-all group flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+              <i data-lucide="user-check" class="w-6 h-6"></i>
+            </div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">
+                Instrutor
+              </span>
+              <span class="text-[11px] text-slate-400">Vídeo #10</span>
+            </div>
+            <h3 class="font-bold text-base text-senac-textDark group-hover:text-senac-blue transition-colors mb-2">
+              Tela do Instrutor & Diário
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+              Tour pela visão do docente: chamada, registro de aulas ministradas e acompanhamento de alunos.
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+            <button onclick="selectVideoById('video-10')" class="text-xs font-bold text-senac-orange group-hover:text-senac-orangeHover flex items-center gap-1">
+              Assistir Vídeo <i data-lucide="play" class="w-3 h-3 fill-current"></i>
+            </button>
+            <button onclick="openDocModal('tela-instrutor')" class="text-xs font-semibold text-slate-500 hover:text-senac-blue">
+              Ler Guia
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 3: Painel do Coordenador -->
+        <div class="bg-white rounded-2xl border border-senac-borderLight p-5 shadow-subtle hover:shadow-card hover:-translate-y-1 transition-all group flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+              <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+            </div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">
+                Coordenação
+              </span>
+              <span class="text-[11px] text-slate-400">Vídeos #4, #8, #9</span>
+            </div>
+            <h3 class="font-bold text-base text-senac-textDark group-hover:text-senac-blue transition-colors mb-2">
+              Catálogo & Cursos do Coordenador
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+              Como coordenadores cadastram cursos, gerenciam o catálogo e validam pautas de turmas.
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+            <button onclick="selectVideoById('video-4')" class="text-xs font-bold text-senac-orange group-hover:text-senac-orangeHover flex items-center gap-1">
+              Assistir Vídeo <i data-lucide="play" class="w-3 h-3 fill-current"></i>
+            </button>
+            <button onclick="openDocModal('catalogo-coordenador')" class="text-xs font-semibold text-slate-500 hover:text-senac-blue">
+              Ler Guia
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 4: Backoffice e Gestão ADM -->
+        <div class="bg-white rounded-2xl border border-senac-borderLight p-5 shadow-subtle hover:shadow-card hover:-translate-y-1 transition-all group flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
+            </div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2 py-0.5 rounded-full">
+                Backoffice / ADM
+              </span>
+              <span class="text-[11px] text-slate-400">Vídeos #3, #5, #7</span>
+            </div>
+            <h3 class="font-bold text-base text-senac-textDark group-hover:text-senac-blue transition-colors mb-2">
+              Colaboradores & Pautas ADM
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+              Criação de colaboradores, atribuição de perfis, homologação de cursos e auditoria de pautas.
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+            <button onclick="selectVideoById('video-5')" class="text-xs font-bold text-senac-orange group-hover:text-senac-orangeHover flex items-center gap-1">
+              Assistir Vídeo <i data-lucide="play" class="w-3 h-3 fill-current"></i>
+            </button>
+            <button onclick="openDocModal('permissoes-backoffice')" class="text-xs font-semibold text-slate-500 hover:text-senac-blue">
+              Ler Guia
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Seção FAQ & Card Destaque de Suporte Técnico -->
+      <div class="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        
+        <!-- Perguntas Frequentes (FAQ) Interativo -->
+        <div class="lg:col-span-8 bg-white rounded-2xl border border-senac-borderLight p-6 shadow-subtle">
+          <div class="flex items-center gap-2 mb-5">
+            <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center">
+              <i data-lucide="help-circle" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg text-senac-textDark">Dúvidas Frequentes (FAQ)</h3>
+              <p class="text-xs text-slate-500">Respostas rápidas para o dia a dia do Connect Senac</p>
+            </div>
+          </div>
+
+          <!-- Acordeão FAQ -->
+          <div class="space-y-3" id="faqAccordion">
+            
+            <div class="border border-slate-200 rounded-xl overflow-hidden">
+              <button onclick="toggleFaq(1)" class="w-full flex items-center justify-between p-4 text-left font-semibold text-sm text-senac-textDark hover:bg-slate-50 transition-colors">
+                <span class="flex items-center gap-2.5">
+                  <span class="w-5 h-5 rounded-full bg-senac-blueLight text-senac-blue text-xs flex items-center justify-center font-bold">1</span>
+                  Como solicitar um agendamento de laboratório ou sala?
+                </span>
+                <i id="faqIcon-1" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+              </button>
+              <div id="faqContent-1" class="hidden p-4 pt-0 text-xs text-slate-600 border-t border-slate-100 bg-slate-50/50 leading-relaxed">
+                Assista ao <strong>Vídeo #2 (Ensinando a fazer cadastro e Agendamento)</strong> na playlist. Basta acessar a aba Agendamentos, selecionar a unidade, data, período e confirmar a reserva da sala ou recurso desejado.
+              </div>
+            </div>
+
+            <div class="border border-slate-200 rounded-xl overflow-hidden">
+              <button onclick="toggleFaq(2)" class="w-full flex items-center justify-between p-4 text-left font-semibold text-sm text-senac-textDark hover:bg-slate-50 transition-colors">
+                <span class="flex items-center gap-2.5">
+                  <span class="w-5 h-5 rounded-full bg-senac-blueLight text-senac-blue text-xs flex items-center justify-center font-bold">2</span>
+                  Qual a diferença entre Pautas Globais ADM e Coordenador?
+                </span>
+                <i id="faqIcon-2" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+              </button>
+              <div id="faqContent-2" class="hidden p-4 pt-0 text-xs text-slate-600 border-t border-slate-100 bg-slate-50/50 leading-relaxed">
+                As <strong>Pautas Globais ADM (Vídeo #7)</strong> permitem auditar e visualizar todas as turmas de todas as áreas da unidade. Já as <strong>Pautas Globais Coordenador (Vídeo #8)</strong> são focadas na gestão pedagógica e acompanhamento das turmas da área de especialidade sob coordenação.
+              </div>
+            </div>
+
+            <div class="border border-slate-200 rounded-xl overflow-hidden">
+              <button onclick="toggleFaq(3)" class="w-full flex items-center justify-between p-4 text-left font-semibold text-sm text-senac-textDark hover:bg-slate-50 transition-colors">
+                <span class="flex items-center gap-2.5">
+                  <span class="w-5 h-5 rounded-full bg-senac-blueLight text-senac-blue text-xs flex items-center justify-center font-bold">3</span>
+                  Como cadastrar um novo colaborador ou instrutor?
+                </span>
+                <i id="faqIcon-3" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+              </button>
+              <div id="faqContent-3" class="hidden p-4 pt-0 text-xs text-slate-600 border-t border-slate-100 bg-slate-50/50 leading-relaxed">
+                Administradores podem utilizar a opção demonstrada no <strong>Vídeo #5 (Criando Colaborador ADM)</strong>: acesse o módulo de Gestão de Usuários, insira o e-mail institucional e selecione o perfil de permissão adequado.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Card de Suporte Técnico com CTA Laranja Senac -->
+        <div class="lg:col-span-4 bg-gradient-to-br from-[#00498B] to-[#00386C] text-white rounded-2xl p-6 shadow-card border border-[#1A6BB8]/40 flex flex-col justify-between relative overflow-hidden">
+          
+          <!-- Grafismo decorativo -->
+          <div class="absolute -right-8 -bottom-8 w-36 h-36 bg-senac-orange/10 rounded-full blur-2xl pointer-events-none"></div>
+          <div class="absolute -left-8 -top-8 w-36 h-36 bg-senac-blue/20 rounded-full blur-2xl pointer-events-none"></div>
+
+          <div class="relative z-10">
+            <div class="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-xs font-semibold text-senac-yellow mb-4 border border-white/10">
+              <i data-lucide="headset" class="w-3.5 h-3.5"></i>
+              Central de Atendimento TI Senac
+            </div>
+            
+            <h3 class="text-xl font-bold tracking-tight text-white mb-2">
+              Dúvidas sobre o Connect Senac?
+            </h3>
+            
+            <p class="text-xs text-slate-300 leading-relaxed mb-6">
+              Nossa equipe de suporte técnico e pedagógico está disponível para orientar e solucionar qualquer chamado.
+            </p>
+
+            <div class="space-y-2.5 text-xs text-slate-300 mb-6 bg-black/20 p-3.5 rounded-xl border border-white/5">
+              <div class="flex items-center gap-2">
+                <i data-lucide="mail" class="w-4 h-4 text-senac-orange"></i>
+                <span>suporte.connect@ba.senac.br</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="phone-call" class="w-4 h-4 text-senac-yellow"></i>
+                <span>(71) 3186-4000</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative z-10 pt-2">
+            <button 
+              onclick="openSupportModal()" 
+              class="w-full flex items-center justify-center gap-2.5 bg-senac-orange hover:bg-senac-orangeHover text-white py-3 px-4 rounded-xl font-bold text-sm shadow-glow-orange hover:shadow-lg transition-all active:scale-95"
+            >
+              <i data-lucide="message-square" class="w-4 h-4"></i>
+              <span>Abrir Chamado de Suporte</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: GUIA RÁPIDO / DOCUMENTAÇÃO ESCRITA EM TEXTO -->
+  <!-- ========================================================================= -->
+  <div id="docModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      
+      <div class="p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-senac-blue text-white flex items-center justify-center">
+            <i data-lucide="file-text" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 id="docModalTitle" class="font-bold text-base text-senac-textDark">Guia Rápido do Módulo</h3>
+            <p id="docModalCategory" class="text-xs text-slate-500">Documentação oficial Connect Senac</p>
+          </div>
+        </div>
+        <button onclick="closeDocModal()" class="p-2 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div id="docModalContent" class="p-6 overflow-y-auto space-y-4 text-sm text-slate-700 leading-relaxed">
+        <!-- Conteúdo preenchido dinamicamente -->
+      </div>
+
+      <div class="p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between">
+        <button onclick="closeDocModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-200 rounded-lg">
+          Fechar
+        </button>
+        <button id="docModalWatchBtn" onclick="watchFromModal()" class="flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-senac-orange hover:bg-senac-orangeHover rounded-lg shadow-sm">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+          Assistir ao Vídeo Deste Tópico
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: ABRIR CHAMADO DE SUPORTE -->
+  <!-- ========================================================================= -->
+  <div id="supportModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden">
+      
+      <div class="p-5 border-b border-slate-200 flex items-center justify-between bg-[#00498B] text-white">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-senac-orange text-white flex items-center justify-center shadow-sm">
+            <i data-lucide="life-buoy" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-white">Abrir Chamado no Suporte TI</h3>
+            <p class="text-xs text-slate-300">Connect Senac • Atendimento Ágil</p>
+          </div>
+        </div>
+        <button onclick="closeSupportModal()" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form onsubmit="handleSupportSubmit(event)" class="p-6 space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Módulo / Assunto</label>
+          <select id="supportTopic" class="w-full p-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-senac-orange focus:outline-none">
+            <option value="agendamentos">Agendamento de Salas e Recursos</option>
+            <option value="instrutor">Tela de Instrutor / Diário de Aulas</option>
+            <option value="coordenacao">Catálogo e Cursos do Coordenador</option>
+            <option value="backoffice">Cadastro de Curso / Colaborador ADM</option>
+            <option value="pautas">Pautas Globais e Fechamento</option>
+            <option value="outro">Outro assunto técnico</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Descreva sua dúvida ou problema</label>
+          <textarea required rows="4" placeholder="Ex: Preciso de ajuda para cadastrar um novo curso na área de tecnologia..." class="w-full p-3 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-senac-orange focus:outline-none"></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-2">
+          <button type="button" onclick="closeSupportModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg">
+            Cancelar
+          </button>
+          <button type="submit" class="px-5 py-2.5 text-xs font-bold text-white bg-senac-orange hover:bg-senac-orangeHover rounded-xl shadow-glow-orange transition-all">
+            Enviar Solicitação
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- TOAST NOTIFICATION -->
+  <!-- ========================================================================= -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 bg-senac-navy text-white px-5 py-3 rounded-xl shadow-2xl border border-senac-navyBorder flex items-center gap-3 transition-all transform translate-y-20 opacity-0 pointer-events-none">
+    <i id="toastIcon" data-lucide="check-circle" class="w-5 h-5 text-emerald-400"></i>
+    <span id="toastMessage" class="text-xs font-semibold">Mensagem de aviso</span>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER / RODAPÉ OFICIAL SENAC -->
+  <!-- ========================================================================= -->
+  <footer class="bg-senac-navy text-white mt-16 border-t border-senac-navyBorder/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-slate-800 text-xs text-slate-400">
+        
+        <div class="space-y-3 md:col-span-1">
+          <div class="flex items-center gap-2">
+            <img src="assets/logo-icon.png?v=4" alt="Connect Senac" class="h-8 w-auto object-contain">
+            <span class="font-bold text-lg tracking-tight text-white flex items-center">
+              Connect<span class="ml-1 text-white">Senac</span>
+            </span>
+          </div>
+          <p class="leading-relaxed">
+            Ambiente unificado de documentação e tutoriais em vídeo para docentes, coordenadores e colaboradores Senac.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white uppercase tracking-wider mb-3 text-[11px]">Tutoriais em Vídeo</h4>
+          <ul class="space-y-2">
+            <li><a href="#" onclick="selectVideoById('video-1'); return false;" class="hover:text-senac-orange transition-colors">1. Tela Inicial</a></li>
+            <li><a href="#" onclick="selectVideoById('video-2'); return false;" class="hover:text-senac-orange transition-colors">2. Cadastro e Agendamento</a></li>
+            <li><a href="#" onclick="selectVideoById('video-4'); return false;" class="hover:text-senac-orange transition-colors">4. Catálogo Coordenador</a></li>
+            <li><a href="#" onclick="selectVideoById('video-10'); return false;" class="hover:text-senac-orange transition-colors">10. Tela do Instrutor</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white uppercase tracking-wider mb-3 text-[11px]">Links Úteis</h4>
+          <ul class="space-y-2">
+            <li><a href="https://www.ba.senac.br/" target="_blank" rel="noopener noreferrer" class="hover:text-senac-orange transition-colors inline-flex items-center gap-1">Portal Senac <i data-lucide="external-link" class="w-3 h-3 text-slate-400"></i></a></li>
+            <li><a href="#" onclick="showToast('Diretrizes de Segurança da Informação...'); return false;" class="hover:text-senac-orange transition-colors">Política de Privacidade & LGPD</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white uppercase tracking-wider mb-3 text-[11px]">Central de Vídeos</h4>
+          <p class="leading-relaxed mb-3">
+            Tutoriais atualizados e homologados para a versão mais recente do sistema.
+          </p>
+          <div class="inline-block bg-senac-navyLight px-3 py-1.5 rounded-lg border border-senac-navyBorder text-[11px] font-mono text-slate-300">
+            Versão Connect: v2.4 (2026)
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>© 2026 Serviço Nacional de Aprendizagem Comercial - Senac. Todos os direitos reservados.</p>
+        <p class="flex items-center gap-1">
+          Feito para a comunidade educacional <span class="text-senac-orange font-semibold">Senac</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT: DADOS DOS 10 VÍDEOS REAIS E LÓGICA COMPLETA -->
+  <!-- ========================================================================= -->
+  <script>
+    // BASE DE DADOS DOS 10 VÍDEOS OFICIAIS DO CONNECT SENAC
+    const tutorialVideos = [
+      {
+        id: 'video-1',
+        youtubeId: 'O8DCMh8yrNs',
+        si: 'vf3QSK2HfN1FNRTJ',
+        title: 'Tela Inicial e Visão Geral da Plataforma',
+        category: 'Geral',
+        duration: '01:45',
+        level: 'Iniciante',
+        thumbnailText: 'Tela Inicial',
+        description: 'Conheça a interface inicial do Connect Senac, os menus de acesso rápido, notificações e como navegar entre os diferentes módulos do sistema.',
+        steps: [
+          { id: 'v1-s1', text: 'Identifique o menu superior com seus dados e notificações ativas' },
+          { id: 'v1-s2', text: 'Acesse os atalhos rápidos na dashboard principal' },
+          { id: 'v1-s3', text: 'Utilize a barra de pesquisa rápida para localizar recursos' },
+          { id: 'v1-s4', text: 'Navegue entre as opções de cursos, agendamentos e relatórios' }
+        ],
+        quickLinks: [
+          { label: 'Ir para Tela Inicial', action: 'inicio' },
+          { label: 'Painel Geral', action: 'dashboard' }
+        ]
+      },
+      {
+        id: 'video-2',
+        youtubeId: 'ZD57wYGWE2Q',
+        si: 'QwYS6jtaX1ZDLzfb',
+        title: 'Ensinando a Fazer Cadastro e Agendamento',
+        category: 'Agendamentos',
+        duration: '03:20',
+        level: 'Fundamental',
+        thumbnailText: 'Cadastro & Agendamento',
+        description: 'Tutorial passo a passo ensinando a cadastrar e solicitar agendamentos de salas, laboratórios e recursos práticos no Connect Senac.',
+        steps: [
+          { id: 'v2-s1', text: 'Acesse o módulo de Agendamentos no menu principal' },
+          { id: 'v2-s2', text: 'Escolha a data, unidade e turno desejados no calendário' },
+          { id: 'v2-s3', text: 'Selecione a sala ou laboratório com a capacidade adequada' },
+          { id: 'v2-s4', text: 'Confirme os dados e finalize a solicitação de agendamento' }
+        ],
+        quickLinks: [
+          { label: 'Novo Agendamento', action: 'novo-agendamento' },
+          { label: 'Mapa de Salas', action: 'salas' }
+        ]
+      },
+      {
+        id: 'video-3',
+        youtubeId: 'DGD-Hw6gV4Y',
+        si: 'Ej22I1lu7fakNkSk',
+        title: 'Cadastro de Curso (Administrador)',
+        category: 'Backoffice / ADM',
+        duration: '02:50',
+        level: 'Avançado',
+        thumbnailText: 'Cadastro de Curso ADM',
+        description: 'Fluxo completo para administradores cadastrarem novos cursos, configurarem matrizes curriculares, carga horária e parâmetros do curso.',
+        steps: [
+          { id: 'v3-s1', text: 'Entre na área administrativa > Gestão de Cursos' },
+          { id: 'v3-s2', text: 'Clique em "Novo Curso" e preencha as informações gerais' },
+          { id: 'v3-s3', text: 'Configure a carga horária, modalidade e pré-requisitos' },
+          { id: 'v3-s4', text: 'Vincule a matriz curricular e salve as alterações' }
+        ],
+        quickLinks: [
+          { label: 'Cadastrar Novo Curso ADM', action: 'cadastrar-curso-adm' }
+        ]
+      },
+      {
+        id: 'video-4',
+        youtubeId: 'u6XMMfKMb5Q',
+        si: 'fk7jcsaucUnC1EIl',
+        title: 'Catálogo e Curso para o Coordenador',
+        category: 'Coordenação',
+        duration: '02:35',
+        level: 'Intermediário',
+        thumbnailText: 'Catálogo Coordenador',
+        description: 'Aprenda como o coordenador navega pelo catálogo institucional, visualiza a oferta de cursos e acompanha o status de cada programa.',
+        steps: [
+          { id: 'v4-s1', text: 'Abra o Catálogo de Cursos no painel do Coordenador' },
+          { id: 'v4-s2', text: 'Filtre por área de conhecimento ou unidade' },
+          { id: 'v4-s3', text: 'Consulte detalhes, planos de aula e ementas disponíveis' },
+          { id: 'v4-s4', text: 'Gerencie a disponibilidade de turmas para o período letivo' }
+        ],
+        quickLinks: [
+          { label: 'Abrir Catálogo de Cursos', action: 'catalogo-cursos' }
+        ]
+      },
+      {
+        id: 'video-5',
+        youtubeId: 'ejuPoO2KQ7w',
+        si: 'YjUFkXQm_rK4A9Gq',
+        title: 'Criando Colaborador ADM',
+        category: 'Backoffice / ADM',
+        duration: '03:10',
+        level: 'Avançado',
+        thumbnailText: 'Criando Colaborador ADM',
+        description: 'Guia de criação de novos usuários, atribuição de perfis de acesso (docente, coordenador, suporte) e controle de permissões no sistema.',
+        steps: [
+          { id: 'v5-s1', text: 'Acesse o painel administrativo na aba "Usuários & Colaboradores"' },
+          { id: 'v5-s2', text: 'Clique em "Adicionar Colaborador" e insira os dados cadastrais' },
+          { id: 'v5-s3', text: 'Defina o perfil de acesso (ADM, Coordenador ou Instrutor)' },
+          { id: 'v5-s4', text: 'Envie o convite de acesso institucional por e-mail' }
+        ],
+        quickLinks: [
+          { label: 'Gerenciar Colaboradores', action: 'gerenciar-colaboradores' }
+        ]
+      },
+      {
+        id: 'video-6',
+        youtubeId: 'abJg6UL-xgA',
+        si: '7uMLI53Gm-2hgij4',
+        title: 'Gestão de Cursos e Turmas',
+        category: 'Coordenação',
+        duration: '02:40',
+        level: 'Intermediário',
+        thumbnailText: 'Gestão de Cursos',
+        description: 'Como coordenadores e gestores acompanham turmas ativas, editam informações pedagógicas e monitoram vagas preenchidas.',
+        steps: [
+          { id: 'v6-s1', text: 'Acesse a listagem de turmas no módulo de Gestão de Cursos' },
+          { id: 'v6-s2', text: 'Visualize indicadores de ocupação, data de início e término' },
+          { id: 'v6-s3', text: 'Realize ajustes de cronograma ou troca de instrutor responsável' },
+          { id: 'v6-s4', text: 'Gere relatórios sintéticos de acompanhamento da turma' }
+        ],
+        quickLinks: [
+          { label: 'Gestão de Turmas', action: 'gestao-turmas' }
+        ]
+      },
+      {
+        id: 'video-7',
+        youtubeId: '281QjRdhbk0',
+        si: 'UVwL-5rMhTSbeMHY',
+        title: 'Pautas Globais (Administrador)',
+        category: 'Backoffice / ADM',
+        duration: '03:05',
+        level: 'Avançado',
+        thumbnailText: 'Pautas Globais ADM',
+        description: 'Visão panorâmica para administradores acompanharem todas as pautas, diários de classe e registros de frequência de todas as turmas da unidade.',
+        steps: [
+          { id: 'v7-s1', text: 'Acesse a seção de Pautas Globais no menu administrativo' },
+          { id: 'v7-s2', text: 'Utilize os filtros avançados por unidade, curso e período' },
+          { id: 'v7-s3', text: 'Audite os registros de frequência e avaliações lançadas' },
+          { id: 'v7-s4', text: 'Exporte relatórios consolidados em PDF ou planilha' }
+        ],
+        quickLinks: [
+          { label: 'Painel de Pautas ADM', action: 'pautas-adm' }
+        ]
+      },
+      {
+        id: 'video-8',
+        youtubeId: 'gEynyIQ8Rq0',
+        si: 'LkTlnlBDGWviXdrP',
+        title: 'Pautas Globais (Coordenador)',
+        category: 'Coordenação',
+        duration: '02:55',
+        level: 'Intermediário',
+        thumbnailText: 'Pautas Coordenador',
+        description: 'Como o coordenador de área acompanha as pautas das suas turmas sob supervisão, valida menções e confere o fechamento pedagógico.',
+        steps: [
+          { id: 'v8-s1', text: 'Navegue até "Pautas e Diários" no menu da Coordenação' },
+          { id: 'v8-s2', text: 'Selecione a área ou curso sob sua gestão' },
+          { id: 'v8-s3', text: 'Verifique o cumprimento do cronograma de aulas pelos docentes' },
+          { id: 'v8-s4', text: 'Valide o fechamento das etapas avaliativas' }
+        ],
+        quickLinks: [
+          { label: 'Pautas da Coordenação', action: 'pautas-coordenador' }
+        ]
+      },
+      {
+        id: 'video-9',
+        youtubeId: 'DFeNkDUrrr0',
+        si: 'UAyfyW7Ql8kTEyZ0',
+        title: 'Tela de Cadastro de Curso do Coordenador',
+        category: 'Coordenação',
+        duration: '02:45',
+        level: 'Intermediário',
+        thumbnailText: 'Cadastro Coordenador',
+        description: 'Demonstração das opções que o coordenador tem para solicitar, estruturar ou parametrizar novas ofertas de cursos na unidade.',
+        steps: [
+          { id: 'v9-s1', text: 'Acesse "Cadastrar Curso / Oferta" no painel da Coordenação' },
+          { id: 'v9-s2', text: 'Preencha as especificações técnicas da turma' },
+          { id: 'v9-s3', text: 'Defina o calendário letivo e os recursos de laboratório necessários' },
+          { id: 'v9-s4', text: 'Submeta a proposta de turma para homologação' }
+        ],
+        quickLinks: [
+          { label: 'Criar Oferta de Curso', action: 'criar-oferta' }
+        ]
+      },
+      {
+        id: 'video-10',
+        youtubeId: 'MG8Qf1FJwU0',
+        si: 'YAAe8FIdAIxN-duc',
+        title: 'Tela do Instrutor e Diário de Aulas',
+        category: 'Instrutor',
+        duration: '03:30',
+        level: 'Fundamental',
+        thumbnailText: 'Tela de Instrutor',
+        description: 'Tour completo pela visão do instrutor: chamada diária, registro de conteúdo ministrado, avaliação por competências e comunicação com a turma.',
+        steps: [
+          { id: 'v10-s1', text: 'Faça login como Instrutor e localize suas turmas do dia' },
+          { id: 'v10-s2', text: 'Abra a pauta da aula e faça a chamada dos estudantes' },
+          { id: 'v10-s3', text: 'Registre o plano de aula executado e observações' },
+          { id: 'v10-s4', text: 'Lance as menções de avaliação formativa e somativa' }
+        ],
+        quickLinks: [
+          { label: 'Diário do Instrutor', action: 'diario-instrutor' },
+          { label: 'Lançar Presenças', action: 'chamada' }
+        ]
+      }
+    ];
+
+    // CONTEÚDO DOS GUIAS ESCRITOS PARA OS MODAIS
+    const writtenDocs = {
+      'agendamento-pratico': {
+        title: 'Cadastro e Agendamento no Connect Senac',
+        category: 'Módulo de Agendamentos',
+        content: `
+          <h4 class="font-bold text-slate-900 text-sm mb-1">1. Visão Geral</h4>
+          <p class="mb-3">O sistema de agendamento do Connect Senac permite reservar salas convencionais, laboratórios de informática e ambientes práticos.</p>
+          
+          <h4 class="font-bold text-slate-900 text-sm mb-1">2. Passo a Passo</h4>
+          <ol class="list-decimal pl-5 space-y-1.5 mb-4">
+            <li>Navegue até o menu <strong>Agendamentos</strong>.</li>
+            <li>Selecione a data no calendário interativo.</li>
+            <li>Escolha a sala com a capacidade e infraestrutura necessária.</li>
+            <li>Confirme a reserva e receba a confirmação no sistema.</li>
+          </ol>
+        `
+      },
+      'tela-instrutor': {
+        title: 'Guia da Tela do Instrutor',
+        category: 'Módulo do Instrutor',
+        content: `
+          <h4 class="font-bold text-slate-900 text-sm mb-1">1. Funcionalidades do Docente</h4>
+          <p class="mb-3">Na tela do instrutor você encontra a lista de turmas ativas, pauta diária, lançamento de presenças e registro de competências avaliadas.</p>
+          
+          <h4 class="font-bold text-slate-900 text-sm mb-1">2. Rotina Diária</h4>
+          <ol class="list-decimal pl-5 space-y-1.5 mb-4">
+            <li>Selecione a aula do dia.</li>
+            <li>Faça o registro de frequência dos alunos.</li>
+            <li>Insira um breve resumo do conteúdo prático trabalhado.</li>
+            <li>Salve a pauta para atualizar o sistema em tempo real.</li>
+          </ol>
+        `
+      },
+      'catalogo-coordenador': {
+        title: 'Catálogo e Gestão de Cursos da Coordenação',
+        category: 'Módulo da Coordenação',
+        content: `
+          <h4 class="font-bold text-slate-900 text-sm mb-1">1. Catálogo Institucional</h4>
+          <p class="mb-3">O coordenador pode verificar a matriz curricular, pré-requisitos, planos de ensino e criar novas turmas para o calendário letivo.</p>
+          
+          <h4 class="font-bold text-slate-900 text-sm mb-1">2. Gestão de Pautas</h4>
+          <p class="mb-3">Acompanhe se os docentes estão preenchendo as pautas em dia e valide as menções finais antes do fechamento de período.</p>
+        `
+      },
+      'permissoes-backoffice': {
+        title: 'Gestão de Colaboradores e Pautas ADM',
+        category: 'Administração & Backoffice',
+        content: `
+          <h4 class="font-bold text-slate-900 text-sm mb-1">1. Criação de Usuários</h4>
+          <p class="mb-3">Administradores podem conceder e revogar acessos, definir papéis de coordenador, instrutor ou apoio técnico.</p>
+          
+          <h4 class="font-bold text-slate-900 text-sm mb-1">2. Pautas Globais</h4>
+          <p class="mb-3">Acompanhamento consolidado de todas as unidades e turmas com relatórios para auditoria acadêmica.</p>
+        `
+      }
+    };
+
+    // ESTADO DA APLICAÇÃO
+    let activeVideoId = 'video-1';
+    let watchedVideoIds = new Set(JSON.parse(localStorage.getItem('connect_senac_watched_v2') || '[]'));
+    let currentCategory = 'all';
+    let currentSearchTerm = '';
+    let completedSteps = new Set(JSON.parse(localStorage.getItem('connect_senac_steps_v2') || '[]'));
+
+    // INICIALIZAÇÃO
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      renderPlaylist();
+      loadActiveVideo(activeVideoId, false);
+      updateOverallProgress();
+    });
+
+    // RENDERIZAR LISTA DA PLAYLIST
+    function renderPlaylist() {
+      const container = document.getElementById('videoPlaylistList');
+      const filteredVideos = tutorialVideos.filter(v => {
+        const matchesCategory = currentCategory === 'all' || v.category.toLowerCase() === currentCategory.toLowerCase();
+        const matchesSearch = currentSearchTerm === '' || 
+          v.title.toLowerCase().includes(currentSearchTerm.toLowerCase()) || 
+          v.description.toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
+          v.category.toLowerCase().includes(currentSearchTerm.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filteredVideos.length === 0) {
+        container.innerHTML = `
+          <div class="p-8 text-center text-slate-400 space-y-3">
+            <i data-lucide="video-off" class="w-10 h-10 mx-auto text-slate-300"></i>
+            <p class="text-xs font-semibold">Nenhum tutorial encontrado para a busca.</p>
+            <button onclick="clearSearch()" class="text-xs text-senac-orange font-bold hover:underline">Limpar filtros de busca</button>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      container.innerHTML = filteredVideos.map((video, index) => {
+        const isActive = video.id === activeVideoId;
+        const isWatched = watchedVideoIds.has(video.id);
+        const youtubeThumb = `https://img.youtube.com/vi/${video.youtubeId}/mqdefault.jpg`;
+
+        return `
+          <div 
+            onclick="selectVideoById('${video.id}')"
+            class="group relative flex items-start gap-3 p-3 rounded-xl cursor-pointer transition-all border ${
+              isActive 
+                ? 'bg-senac-blueLight/80 border-senac-blue shadow-sm ring-1 ring-senac-blue/30' 
+                : 'bg-white hover:bg-slate-50 border-transparent hover:border-slate-200'
+            }"
+            id="playlist-card-${video.id}"
+          >
+            <!-- Thumbnail Real do YouTube -->
+            <div class="relative w-24 sm:w-28 aspect-video rounded-lg overflow-hidden shrink-0 bg-senac-navy flex items-center justify-center border border-slate-700/30">
+              <img 
+                src="${youtubeThumb}" 
+                alt="${video.title}" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              >
+              
+              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+
+              <!-- Badge de Tempo -->
+              <span class="absolute bottom-1 right-1 z-20 text-[9px] font-mono font-semibold bg-black/85 text-white px-1.5 py-0.2 rounded">
+                ${video.duration}
+              </span>
+
+              <!-- Indicador de Vídeo Ativo -->
+              ${isActive ? `
+                <div class="absolute inset-0 z-30 bg-senac-blue/50 flex items-center justify-center">
+                  <div class="w-7 h-7 rounded-full bg-senac-orange text-white flex items-center justify-center shadow-md animate-pulse">
+                    <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+                  </div>
+                </div>
+              ` : ''}
+
+              <!-- Indicador de Assistido -->
+              ${isWatched ? `
+                <div class="absolute top-1 left-1 z-20 bg-emerald-500 text-white rounded-full p-0.5 shadow-sm">
+                  <i data-lucide="check" class="w-2.5 h-2.5"></i>
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Informações do Vídeo -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-1.5 mb-1">
+                <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${
+                  video.category === 'Agendamentos' ? 'bg-blue-100 text-senac-blue' :
+                  video.category === 'Coordenação' ? 'bg-amber-100 text-amber-800' :
+                  video.category === 'Instrutor' ? 'bg-emerald-100 text-emerald-800' :
+                  video.category === 'Backoffice / ADM' ? 'bg-purple-100 text-purple-800' : 'bg-slate-100 text-slate-700'
+                }">
+                  ${video.category}
+                </span>
+
+                ${isWatched ? `
+                  <span class="text-[10px] font-semibold text-emerald-600 flex items-center gap-0.5">
+                    <i data-lucide="check-check" class="w-3 h-3"></i> Assistido
+                  </span>
+                ` : `
+                  <span class="text-[10px] text-slate-400">Pendente</span>
+                `}
+              </div>
+
+              <h4 class="text-xs font-bold ${isActive ? 'text-senac-blue' : 'text-senac-textDark group-hover:text-senac-blue'} line-clamp-2 leading-snug transition-colors">
+                ${video.title}
+              </h4>
+
+              <p class="text-[11px] text-slate-500 mt-1 flex items-center gap-2">
+                <span><i data-lucide="clock" class="w-3 h-3 inline"></i> ${video.duration} min</span>
+                <span>•</span>
+                <span class="truncate">${video.level}</span>
+              </p>
+            </div>
+
+            <!-- Ícone de seta no hover -->
+            <div class="self-center hidden sm:block ${isActive ? 'text-senac-orange' : 'text-slate-300 group-hover:text-slate-500'} transition-colors">
+              <i data-lucide="${isActive ? 'volume-2' : 'chevron-right'}" class="w-4 h-4"></i>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    // CARREGAR E EXIBIR VÍDEO ATIVO NO IFRAME
+    function loadActiveVideo(videoId, autoplay = false) {
+      const video = tutorialVideos.find(v => v.id === videoId);
+      if (!video) return;
+
+      activeVideoId = videoId;
+
+      // Atualizar src do Iframe do YouTube
+      const iframe = document.getElementById('mainYouTubeIframe');
+      const autoplayParam = autoplay ? '&autoplay=1' : '';
+      const embedUrl = `https://www.youtube.com/embed/${video.youtubeId}?si=${video.si || ''}&enablejsapi=1&rel=0${autoplayParam}`;
+      iframe.src = embedUrl;
+
+      // Metadados
+      document.getElementById('activeVideoTitle').textContent = video.title;
+      document.getElementById('activeVideoDescription').textContent = video.description;
+      document.getElementById('activeVideoDuration').textContent = `${video.duration} min`;
+      document.getElementById('activeVideoLevelText').textContent = video.level;
+      document.getElementById('activeVideoCategoryBadge').innerHTML = `
+        <i data-lucide="folder" class="w-3.5 h-3.5"></i>
+        <span>${video.category}</span>
+      `;
+
+      // Botão Marcar como Assistido
+      const isWatched = watchedVideoIds.has(videoId);
+      updateWatchedButtonUI(isWatched);
+
+      // Checklist de passos
+      renderStepsChecklist(video);
+
+      // Links rápidos
+      renderQuickLinks(video);
+
+      // Atualizar índice
+      const currentIndex = tutorialVideos.findIndex(v => v.id === videoId) + 1;
+      document.getElementById('currentVideoIndexBadge').textContent = `${currentIndex} / ${tutorialVideos.length}`;
+
+      renderPlaylist();
+      lucide.createIcons();
+    }
+
+    // RENDERIZAR CHECKLIST DE PASSOS DO VÍDEO
+    function renderStepsChecklist(video) {
+      const container = document.getElementById('stepChecklistContainer');
+      const progressSpan = document.getElementById('checklistProgress');
+      
+      const totalSteps = video.steps.length;
+      let completedInThisVideo = 0;
+
+      container.innerHTML = video.steps.map((step, idx) => {
+        const isDone = completedSteps.has(step.id);
+        if (isDone) completedInThisVideo++;
+
+        return `
+          <label 
+            class="flex items-start gap-3 p-2.5 rounded-xl border transition-all cursor-pointer ${
+              isDone 
+                ? 'bg-emerald-50/70 border-emerald-200 text-slate-800' 
+                : 'bg-white border-slate-200/80 hover:border-slate-300 text-slate-700'
+            }"
+          >
+            <input 
+              type="checkbox" 
+              ${isDone ? 'checked' : ''} 
+              onchange="toggleStepCompleted('${step.id}')"
+              class="mt-0.5 w-4 h-4 rounded text-senac-orange focus:ring-senac-orange border-slate-300"
+            >
+            <div class="flex-1 text-xs leading-relaxed">
+              <span class="font-bold text-slate-900 mr-1.5">Passo ${idx + 1}:</span>
+              <span class="${isDone ? 'line-through text-slate-500' : ''}">${step.text}</span>
+            </div>
+            ${isDone ? '<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>' : ''}
+          </label>
+        `;
+      }).join('');
+
+      progressSpan.textContent = `${completedInThisVideo}/${totalSteps} passos concluídos`;
+      lucide.createIcons();
+    }
+
+    // ALTERNAR STATUS DO PASSO NO CHECKLIST
+    function toggleStepCompleted(stepId) {
+      if (completedSteps.has(stepId)) {
+        completedSteps.delete(stepId);
+      } else {
+        completedSteps.add(stepId);
+      }
+      localStorage.setItem('connect_senac_steps_v2', JSON.stringify(Array.from(completedSteps)));
+      const video = tutorialVideos.find(v => v.id === activeVideoId);
+      if (video) renderStepsChecklist(video);
+    }
+
+    // RENDERIZAR LINKS RÁPIDOS
+    function renderQuickLinks(video) {
+      const container = document.getElementById('quickLinksContainer');
+      container.innerHTML = video.quickLinks.map(link => `
+        <button 
+          onclick="handleQuickAction('${link.action}', '${video.title}')" 
+          class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-white hover:bg-senac-blue hover:text-white border border-slate-300 text-slate-700 transition-all shadow-2xs group"
+        >
+          <span>${link.label}</span>
+          <i data-lucide="arrow-up-right" class="w-3 h-3 text-slate-400 group-hover:text-white"></i>
+        </button>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function handleQuickAction(action, title) {
+      showToast(`Abrindo módulo: ${action.replace(/-/g, ' ').toUpperCase()} no Connect Senac`);
+    }
+
+    // SELEÇÃO DE VÍDEO
+    function selectVideoById(videoId) {
+      loadActiveVideo(videoId, true);
+      
+      // Rolar suavemente até o player
+      document.getElementById('videoContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      showToast('Carregando vídeo oficial no player...');
+    }
+
+    // ABRIR DIRETAMENTE NO YOUTUBE
+    function openInYouTube() {
+      const video = tutorialVideos.find(v => v.id === activeVideoId);
+      if (video) {
+        window.open(`https://www.youtube.com/watch?v=${video.youtubeId}`, '_blank');
+      }
+    }
+
+    // MARCAR COMO ASSISTIDO / PENDENTE
+    function toggleActiveVideoWatched() {
+      const isWatched = watchedVideoIds.has(activeVideoId);
+      if (isWatched) {
+        watchedVideoIds.delete(activeVideoId);
+        showToast('Vídeo marcado como Pendente');
+      } else {
+        watchedVideoIds.add(activeVideoId);
+        showToast('Vídeo marcado como Assistido!');
+      }
+
+      localStorage.setItem('connect_senac_watched_v2', JSON.stringify(Array.from(watchedVideoIds)));
+      updateWatchedButtonUI(!isWatched);
+      renderPlaylist();
+      updateOverallProgress();
+    }
+
+    function updateWatchedButtonUI(isWatched) {
+      const btn = document.getElementById('markWatchedBtn');
+      const text = document.getElementById('markWatchedText');
+      const icon = document.getElementById('markWatchedIcon');
+
+      if (isWatched) {
+        btn.className = 'flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all shadow-sm border focus:outline-none focus:ring-2 bg-emerald-600 text-white border-emerald-700 hover:bg-emerald-700';
+        text.textContent = 'Assistido (Concluído)';
+        icon.setAttribute('data-lucide', 'check-check');
+      } else {
+        btn.className = 'flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all shadow-sm border focus:outline-none focus:ring-2 bg-white text-slate-700 border-slate-300 hover:bg-slate-50';
+        text.textContent = 'Marcar como Assistido';
+        icon.setAttribute('data-lucide', 'circle');
+      }
+      lucide.createIcons();
+    }
+
+    // PROGRESSO GERAL
+    function updateOverallProgress() {
+      const total = tutorialVideos.length;
+      const watched = watchedVideoIds.size;
+      const percent = Math.round((watched / total) * 100);
+
+      document.getElementById('headerProgressText').textContent = `${watched} / ${total} concluídos`;
+      document.getElementById('overallPlaylistPercent').textContent = `${percent}% concluído`;
+      document.getElementById('overallProgressBar').style.width = `${percent}%`;
+    }
+
+    function resetAllProgress() {
+      if (confirm('Deseja realmente reiniciar todo o histórico de vídeos assistidos?')) {
+        watchedVideoIds.clear();
+        completedSteps.clear();
+        localStorage.removeItem('connect_senac_watched_v2');
+        localStorage.removeItem('connect_senac_steps_v2');
+        updateWatchedButtonUI(false);
+        renderPlaylist();
+        updateOverallProgress();
+        const video = tutorialVideos.find(v => v.id === activeVideoId);
+        if (video) renderStepsChecklist(video);
+        showToast('Progresso reiniciado com sucesso.');
+      }
+    }
+
+    // FILTRO DE CATEGORIA
+    function setCategoryFilter(category) {
+      currentCategory = category;
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        if (btn.getAttribute('data-category') === category) {
+          btn.className = 'category-btn active shrink-0 px-3 py-1.5 rounded-xl transition-all border font-semibold bg-senac-navy text-white border-senac-navy shadow-sm';
+        } else {
+          btn.className = 'category-btn shrink-0 px-3 py-1.5 rounded-xl transition-all border font-semibold bg-white text-slate-600 border-slate-200 hover:border-senac-blue hover:text-senac-blue';
+        }
+      });
+      renderPlaylist();
+    }
+
+    // BUSCA GLOBAL
+    function handleSearch(term) {
+      currentSearchTerm = term.trim();
+      const notification = document.getElementById('searchNotification');
+      const clearBtn = document.getElementById('clearSearchBtn');
+      const resultText = document.getElementById('searchResultText');
+
+      // Sincronizar inputs
+      document.getElementById('globalSearchInput').value = term;
+      document.getElementById('mobileSearchInput').value = term;
+
+      if (currentSearchTerm.length > 0) {
+        notification.classList.remove('hidden');
+        clearBtn.classList.remove('hidden');
+        resultText.textContent = `Buscando por: "${currentSearchTerm}"`;
+      } else {
+        notification.classList.add('hidden');
+        clearBtn.classList.add('hidden');
+      }
+
+      renderPlaylist();
+    }
+
+    function clearSearch() {
+      currentSearchTerm = '';
+      document.getElementById('globalSearchInput').value = '';
+      document.getElementById('mobileSearchInput').value = '';
+      document.getElementById('searchNotification').classList.add('hidden');
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      setCategoryFilter('all');
+      renderPlaylist();
+    }
+
+    // COMPARTILHAR LINK
+    function copyVideoLink() {
+      const url = `${window.location.origin}${window.location.pathname}#${activeVideoId}`;
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('Link do tutorial copiado para a área de transferência!');
+      }).catch(() => {
+        showToast(`Link: ${url}`);
+      });
+    }
+
+    // MODAL DE DOCUMENTAÇÃO ESCRITA
+    let currentModalVideoTarget = 'video-1';
+
+    function openDocModal(docKey) {
+      const doc = writtenDocs[docKey];
+      if (!doc) return;
+
+      document.getElementById('docModalTitle').textContent = doc.title;
+      document.getElementById('docModalCategory').textContent = doc.category;
+      document.getElementById('docModalContent').innerHTML = doc.content;
+      
+      if (docKey === 'agendamento-pratico') currentModalVideoTarget = 'video-2';
+      else if (docKey === 'tela-instrutor') currentModalVideoTarget = 'video-10';
+      else if (docKey === 'catalogo-coordenador') currentModalVideoTarget = 'video-4';
+      else if (docKey === 'permissoes-backoffice') currentModalVideoTarget = 'video-5';
+
+      const modal = document.getElementById('docModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeDocModal() {
+      const modal = document.getElementById('docModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function watchFromModal() {
+      closeDocModal();
+      selectVideoById(currentModalVideoTarget);
+    }
+
+    // FAQ INTERATIVO
+    function toggleFaq(id) {
+      const content = document.getElementById(`faqContent-${id}`);
+      const icon = document.getElementById(`faqIcon-${id}`);
+
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      } else {
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      }
+    }
+
+    // MODAL DE SUPORTE
+    function openSupportModal() {
+      const modal = document.getElementById('supportModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeSupportModal() {
+      const modal = document.getElementById('supportModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function handleSupportSubmit(e) {
+      e.preventDefault();
+      closeSupportModal();
+      showToast('Chamado #SNK-9482 aberto com sucesso! Nossa equipe entrará em contato.');
+    }
+
+    // MENU HAMBÚRGUER MOBILE
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenuDropdown');
+      const icon = document.getElementById('mobileMenuIcon');
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        icon.setAttribute('data-lucide', 'x');
+      } else {
+        menu.classList.add('hidden');
+        icon.setAttribute('data-lucide', 'menu');
+      }
+      lucide.createIcons();
+    }
+
+    // TOAST NOTIFICATIONS
+    let toastTimeout = null;
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const msgSpan = document.getElementById('toastMessage');
+
+      msgSpan.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+      }, 3500);
+    }
+
+    // ATALHOS DE TECLADO
+    document.addEventListener('keydown', (e) => {
+      // Pressionar '/' para buscar
+      if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        document.getElementById('globalSearchInput').focus();
+      }
+      // 'Esc' para fechar modais
+      if (e.key === 'Escape') {
+        closeDocModal();
+        closeSupportModal();
+      }
+    });
+  </script>
+</body>
+</html>
