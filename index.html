@@ -756,7 +756,7 @@
             <div class="space-y-2.5 text-xs text-slate-300 mb-6 bg-black/20 p-3.5 rounded-xl border border-white/5">
               <div class="flex items-center gap-2">
                 <i data-lucide="mail" class="w-4 h-4 text-senac-orange"></i>
-                <span>suporte.connect@ba.senac.br</span>
+                <a href="mailto:deyson.jesus@ba.senac.br" class="hover:underline hover:text-white transition-colors">deyson.jesus@ba.senac.br</a>
               </div>
               <div class="flex items-center gap-2">
                 <i data-lucide="phone-call" class="w-4 h-4 text-senac-yellow"></i>
@@ -843,6 +843,38 @@
       </div>
 
       <form onsubmit="handleSupportSubmit(event)" class="p-6 space-y-4">
+        
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-3 flex items-start gap-2.5 text-xs text-slate-700">
+          <i data-lucide="mail-check" class="w-4 h-4 text-senac-blue shrink-0 mt-0.5"></i>
+          <div>
+            <span class="font-bold text-slate-900">Destinatário do Suporte:</span>
+            <p class="text-slate-600">Sua mensagem será enviada diretamente para <strong class="text-senac-blue">deyson.jesus@ba.senac.br</strong>.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Seu Nome</label>
+            <input 
+              type="text" 
+              id="supportName" 
+              placeholder="Ex: Maria Santos" 
+              required
+              class="w-full p-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-senac-orange focus:outline-none"
+            >
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Seu E-mail Institucional</label>
+            <input 
+              type="email" 
+              id="supportSenderEmail" 
+              placeholder="Ex: maria.santos@ba.senac.br" 
+              required
+              class="w-full p-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-senac-orange focus:outline-none"
+            >
+          </div>
+        </div>
+
         <div>
           <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Módulo / Assunto</label>
           <select id="supportTopic" class="w-full p-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-senac-orange focus:outline-none">
@@ -851,22 +883,45 @@
             <option value="coordenacao">Catálogo e Cursos do Coordenador</option>
             <option value="backoffice">Cadastro de Curso / Colaborador ADM</option>
             <option value="pautas">Pautas Globais e Fechamento</option>
-            <option value="outro">Outro assunto técnico</option>
+            <option value="duvida_geral">Dúvida Geral / Outro assunto técnico</option>
           </select>
         </div>
 
         <div>
           <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Descreva sua dúvida ou problema</label>
-          <textarea required rows="4" placeholder="Ex: Preciso de ajuda para cadastrar um novo curso na área de tecnologia..." class="w-full p-3 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-senac-orange focus:outline-none"></textarea>
+          <textarea 
+            id="supportMessage" 
+            required 
+            rows="4" 
+            placeholder="Descreva detalhadamente o que você precisa de auxílio para que nossa equipe possa responder rapidamente..." 
+            class="w-full p-3 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-senac-orange focus:outline-none"
+          ></textarea>
         </div>
 
-        <div class="flex items-center justify-end gap-3 pt-2">
-          <button type="button" onclick="closeSupportModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 border-t border-slate-100">
+          <button type="button" onclick="closeSupportModal()" class="w-full sm:w-auto px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg order-2 sm:order-1">
             Cancelar
           </button>
-          <button type="submit" class="px-5 py-2.5 text-xs font-bold text-white bg-senac-orange hover:bg-senac-orangeHover rounded-xl shadow-glow-orange transition-all">
-            Enviar Solicitação
-          </button>
+          
+          <div class="flex items-center gap-2 w-full sm:w-auto order-1 sm:order-2">
+            <button 
+              type="button" 
+              onclick="sendViaGmailWeb()" 
+              title="Abrir no Gmail Web"
+              class="flex-1 sm:flex-initial px-3 py-2.5 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl border border-slate-300 transition-all flex items-center justify-center gap-1.5"
+            >
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>Abrir no Gmail</span>
+            </button>
+
+            <button 
+              type="submit" 
+              class="flex-1 sm:flex-initial px-5 py-2.5 text-xs font-bold text-white bg-senac-orange hover:bg-senac-orangeHover rounded-xl shadow-glow-orange transition-all flex items-center justify-center gap-1.5 active:scale-95"
+            >
+              <i data-lucide="send" class="w-3.5 h-3.5"></i>
+              <span>Enviar E-mail Real</span>
+            </button>
+          </div>
         </div>
       </form>
 
@@ -1775,10 +1830,63 @@
       modal.classList.remove('flex');
     }
 
+    function getSupportEmailData() {
+      const name = document.getElementById('supportName')?.value.trim() || 'Colaborador';
+      const email = document.getElementById('supportSenderEmail')?.value.trim() || 'Não informado';
+      const topicSelect = document.getElementById('supportTopic');
+      const topicText = topicSelect ? topicSelect.options[topicSelect.selectedIndex].text : 'Dúvida Geral';
+      const message = document.getElementById('supportMessage')?.value.trim() || '';
+
+      if (!message) {
+        alert('Por favor, descreva sua dúvida ou problema antes de enviar.');
+        return null;
+      }
+
+      const recipient = 'deyson.jesus@ba.senac.br';
+      const subject = `[Suporte Connect Senac] ${topicText} - ${name}`;
+      const body = 
+        `Olá Deyson / Suporte TI Connect Senac,\n\n` +
+        `Solicito suporte referente ao sistema Connect Senac:\n\n` +
+        `-----------------------------------------\n` +
+        `DADOS DO SOLICITANTE:\n` +
+        `• Nome: ${name}\n` +
+        `• E-mail institucional: ${email}\n` +
+        `• Módulo / Assunto: ${topicText}\n` +
+        `• Data: ${new Date().toLocaleString('pt-BR')}\n` +
+        `-----------------------------------------\n\n` +
+        `DESCRIÇÃO DA SOLICITAÇÃO:\n` +
+        `${message}\n\n` +
+        `-----------------------------------------\n` +
+        `Enviado a partir da Central de Tutoriais Connect Senac (v2.4 - 2026)`;
+
+      return { recipient, subject, body, name };
+    }
+
     function handleSupportSubmit(e) {
-      e.preventDefault();
+      if (e) e.preventDefault();
+      const data = getSupportEmailData();
+      if (!data) return;
+
+      const mailtoUrl = `mailto:${encodeURIComponent(data.recipient)}?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.body)}`;
+      
+      // Abre o cliente de email padrão
+      window.location.href = mailtoUrl;
+
       closeSupportModal();
-      showToast('Chamado #SNK-9482 aberto com sucesso! Nossa equipe entrará em contato.');
+      showToast(`Abrindo aplicativo de e-mail para enviar para ${data.recipient}...`);
+    }
+
+    function sendViaGmailWeb() {
+      const data = getSupportEmailData();
+      if (!data) return;
+
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(data.recipient)}&su=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.body)}`;
+      
+      // Abre a janela de composição do Gmail Web
+      window.open(gmailUrl, '_blank');
+
+      closeSupportModal();
+      showToast(`Abrindo Gmail Web com mensagem para ${data.recipient}...`);
     }
 
     // MENU HAMBÚRGUER MOBILE
